@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<titil>Hello Sample</titil>
+{% if name %}
+    <h1>Hello {{ name }}!</h1>
+{% else %}
+    <h1>Hello, World!</h1>
+{% endif %}
+{% for digit in digits %}
+    {{ digit }}
+{% endfor %}
+<style type="text/css">
+    .odd
+    {
+        background: #BDF;
+    }
+</style>
+<dl>
+    {% for user in users if not user.hidden %}
+        {% if loop.first %}
+            <div>User List:</div>
+        {% endif %}
+        <div class="{{ loop.cycle('odd', 'even') }}">
+            <dt>User No {{ loop.index }}:</dt>
+            <dd>{{ user.name }}</dd>
+        </div>
+        {% if loop.last %}
+            <div>Total Users: {{ loop.length }}</div>
+        {% endif %}
+    {% else %}
+        <li>No users found</li>
+    {% endfor %}
+</dl>
