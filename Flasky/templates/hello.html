@@ -30,3 +30,22 @@
         <li>No users found</li>
     {% endfor %}
 </dl>
+<div>
+    {% for item in [[1, 2], [3, 4, 5]] recursive %}
+        Depth: {{ loop.depth }}
+        {% if item[0] %}
+            {{ loop(item) }}
+        {% else %}
+            Number: {{ item }} ;
+        {% endif %}
+    {% endfor %}
+</div>
+<div>
+    {% raw %}
+        <ul>
+            {% for item in items %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    {% endraw %}
+</div>
