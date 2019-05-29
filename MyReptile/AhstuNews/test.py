@@ -1,8 +1,9 @@
 import requests
+import re
 from bs4 import BeautifulSoup
 
-
 urlakxw = "http://www.ahstu.edu.cn/index/akxw.htm"
+urltzgg = ""
 urltest = "https://www.baidu.com/"
 content = requests.get(urlakxw)
 content.encoding="UTF-8"
@@ -19,14 +20,26 @@ soup = BeautifulSoup(content.text, 'lxml')
 #     print(line, file=NewsList)
 # NewsList.close()
 # lin作为一个标签，属于一个tag
+newsdict = {}
 for link in soup.find_all('a', attrs={'class':'rigthConBox-conList'}):
-    # print(type(link)) # <class 'bs4.element.Tag'>
+    # type(link) <class 'bs4.element.Tag'>
     spanlist = link.find_all('span', attrs={'class':['conListWord', 'conListTime'], })
+    linkurl = link.get('href')  # 获取每条信息的页面url
+    if (re.match('\.\.', linkurl)):  # 处理内部url,增加首部域名
+        linkurl = 'http://www.ahstu.edu.cn'+linkurl[2:]
+    linkname = spanlist[0].string
+    linkdate = spanlist[1].string
+    newsdict[linkname] = [linkurl, linkdate]
     # find_all 字典的key对应的value是一个list就可以多个查询
     # 对tag可以使用find方法，查找tag内部的其他标签
     # type(spanlist) <class 'bs4.element.ResultSet'>
     # spanlist内包含的每一个标签还是一个tag
     # type(spanlist[0]) <class 'bs4.element.Tag'>
-    for span in spanlist:
-        print(span.string, end=' ')
-    print()
+    # print(urllist)
+    # for span in spanlist:
+    #     print(span.string, end=' ')
+    # print()
+    # 读取新闻条目，具体日期
+
+for key in newsdict:
+    print(newsdict[key])
