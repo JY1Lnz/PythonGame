@@ -2,17 +2,12 @@ import re
 from MyReptile.AhstuNews.MyGetContent import ReptileContent
 
 getcontent = ReptileContent.GetContent()
-akxwdict = getcontent.GetNews(getcontent.urlakxw)
-tzggdict = getcontent.GetNews(getcontent.urltzgg)
-xydtdict = getcontent.GetNews(getcontent.urlxydt)
-xsxxdict = getcontent.GetNews(getcontent.urlxsxx)
-
-newsdict = {}
-newsdict.update(akxwdict)
-newsdict.update(tzggdict)
-newsdict.update(xydtdict)
-newsdict.update(xsxxdict)
+newsdict = getcontent.getstart()
 
 for key in newsdict:
-    if (re.search('信息', key)):
-        print(key)
+    if re.search('信息', key):
+        filename = 'newscontent/'+key+'.txt'
+        news = open(filename, 'w')
+        newscontent = getcontent.gtnewscontent(newsdict[key][0])
+        print(newscontent, file=news)
+        news.close()
