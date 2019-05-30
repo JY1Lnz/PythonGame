@@ -44,10 +44,19 @@ from bs4 import BeautifulSoup
 # for key in newsdict:
 #     print(newsdict[key])
 
-url = 'http://www.ahstu.edu.cn/info/1014/20693.htm'
-content = requests.get(url)
-content.encoding = 'utf-8'
-soup = BeautifulSoup(content.text, 'lxml')
-link = soup.find('div', attrs={'class':'list-textT'})
-print(link.string)
-print(type(link))
+# url = 'http://www.ahstu.edu.cn/info/1014/20693.htm'
+# content = requests.get(url)
+# content.encoding = 'utf-8'
+# soup = BeautifulSoup(content.text, 'lxml')
+# linkstart = soup.find('p', attrs={'class': 'vsbcontent_start'})
+# linkend = soup.find('p', attrs={'class': 'vsbcontent_end'})
+# linknext = linkstart.find_next('p')
+# newscontent = ""
+# while linkstart != linkend:
+#     if linkstart.string:
+#         newscontent += linkstart.string + '\n'
+#     linkstart = linkstart.find_next('p')
+# newscontent += linkstart.string
+# # print(newscontent)
+# # print(linkstart.string)
+# # print(linkend.string)

@@ -68,6 +68,7 @@ class GetContent(object):
             if not newsname:
                 newsname = spanlist[0].string
             newsdate = spanlist[1].string
+            print("获得："+newsname)
             newsdict[newsname] = [newsurl, newsdate]
         return newsdict
 
