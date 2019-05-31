@@ -1,4 +1,5 @@
 import requests
+import queue
 import re
 from bs4 import BeautifulSoup
 
@@ -60,3 +61,19 @@ from bs4 import BeautifulSoup
 # # print(newscontent)
 # # print(linkstart.string)
 # # print(linkend.string)
+
+url = 'http://www.ahstu.edu.cn/index/tzgg.htm'
+# url[:-4] -> http://www.ahstu.edu.cn/index/tzgg
+# http://www.ahstu.edu.cn/index/tzgg/86.htm
+content = requests.get(url)
+content.encoding = 'utf-8'
+soup = BeautifulSoup(content.text, 'lxml')
+
+link = soup.find('td', attrs={'id': 'fanye127268'})
+page = str(link.string)
+_, pagesum = page.split('/')
+print(pagesum)
+pagesum = int(pagesum)-1
+for i in range(pagesum):
+    nexturl = url[:-4]+'/'+str(pagesum-i)+'.htm'
+    print(nexturl)
