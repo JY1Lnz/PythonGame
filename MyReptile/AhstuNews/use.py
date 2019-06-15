@@ -1,5 +1,9 @@
 #!/usr/bin/python
+# -*- coding: UTF-8 -*-
 import re
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../../')  # 使在终端运行时可以正确定位库
 from MyReptile.AhstuNews.MyGetContent import ReptileContent
 
 getcontent = ReptileContent.GetContent()
