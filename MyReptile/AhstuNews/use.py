@@ -14,7 +14,7 @@ for key in newsdict:
     if re.search('信息', key):
         number += 1
         print(key)
-        filename = 'newscontent/'+key+'.txt'
+        filename = 'MyReptile/AhstuNews/newscontent/'+key+'.txt'
         news = open(filename, 'w', encoding='utf-8')
         newscontent = getcontent.gtnewscontent(newsdict[key][0])
         print(newscontent, file=news)
