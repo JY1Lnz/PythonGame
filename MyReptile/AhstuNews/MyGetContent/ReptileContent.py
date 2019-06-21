@@ -17,7 +17,6 @@ class GetContent(object):
             'http://www.ahstu.edu.cn/index/tzgg.htm',
             'http://www.ahstu.edu.cn/index/xydt.htm',
             'http://www.ahstu.edu.cn/index/xsxx.htm',
-            'http://www.ahstu.edu.cn/index/mtak.htm',
         ]
         self.date = time.strftime('%Y-%m-%d', time.localtime(time.time()))
         self.year, self.month, self.day = map(int, self.date.split('-'))
@@ -38,7 +37,7 @@ class GetContent(object):
             return newstitle.string
         return None
 
-    def gtnewscontent(self, url):
+    def getnewscontent(self, url):
         """获取新闻具体内容"""
         content = requests.get(url)
         content.encoding = 'utf-8'
