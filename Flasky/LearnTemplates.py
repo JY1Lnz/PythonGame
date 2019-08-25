@@ -13,7 +13,7 @@ def Index():
 @app.route('/hello')
 @app.route('/hello/<name>')
 def Hello(name=None):
-    return render_template('hello.html', name=name, digits=[1,2,3,4,5], users=Flasky.datafile.users)
+    return render_template('hello.html', name=name, digits=[1, 2, 3, 4, 5], users=Flasky.datafile.users)
 
 
 if __name__ == '__main__':
